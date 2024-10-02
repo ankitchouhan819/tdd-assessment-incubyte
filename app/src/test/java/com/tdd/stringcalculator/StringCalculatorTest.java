@@ -20,4 +20,9 @@ public class StringCalculatorTest {
     public void testAddTwoNumbers() {
         assertEquals(5, StringCalculator.add("2,3"));
     }
+
+    @Test
+    public void testAdditionofMultipleNumberWithComma() {
+        assertEquals(12, StringCalculator.add("2,1,4,5"));
+    }    
 }

@@ -1,13 +1,17 @@
 package com.tdd.stringcalculator;
 
+import java.util.Arrays;
+
 public class StringCalculator {
    
     public static int add(String number) {
         if (number.isEmpty()) return 0;
         
-        if (number.contains(",")) {
-            String[] numbers = number.split(",");
-            return toInt(numbers[0]) + toInt(numbers[1]);
+        String delimiter = ",";
+        if (number.contains(delimiter)) {
+            return Arrays.stream(number.split(delimiter))
+                .mapToInt(Integer::parseInt)
+                .sum();
         } 
         return toInt(number);
     }
