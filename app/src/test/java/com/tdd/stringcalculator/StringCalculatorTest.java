@@ -44,4 +44,10 @@ public class StringCalculatorTest {
     public void testOverThousand() {
         assertEquals(15, StringCalculator.add("1000,10\n5"));
     }
+
+    @Test
+    public void testOtherDelimiter() {
+        assertEquals(10, StringCalculator.add("//:\n1:2:3\n4"));
+        assertEquals(13, StringCalculator.add("//;\n1;2\n3\n7"));
+    }
 }

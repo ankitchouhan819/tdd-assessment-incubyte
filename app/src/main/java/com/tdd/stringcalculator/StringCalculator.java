@@ -10,14 +10,16 @@ public class StringCalculator {
         if (number.isEmpty()) return 0;
         
         String delimiter = ",";
-        if (number.contains(delimiter)) {
-            List<Integer> numList = Arrays.stream(number.split(delimiter+"|\n"))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-            
-            return sum(numList);
-        } 
-        return Integer.parseInt(number);
+        if (number.startsWith("//")) {
+            delimiter = Character.toString(number.charAt(2));
+            number = number.substring(4);
+        }        
+
+        List<Integer> numList = Arrays.stream(number.split(delimiter+"|\n"))
+            .map(Integer::parseInt)
+            .collect(Collectors.toList());
+
+        return sum(numList);
     }
 
     private static int sum(List<Integer> numbers) {
