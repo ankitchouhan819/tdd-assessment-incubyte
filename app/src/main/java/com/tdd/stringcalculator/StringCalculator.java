@@ -1,6 +1,8 @@
 package com.tdd.stringcalculator;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class StringCalculator {
    
@@ -9,15 +11,35 @@ public class StringCalculator {
         
         String delimiter = ",";
         if (number.contains(delimiter)) {
-            return Arrays.stream(number.split(delimiter+"|\n"))
-                .mapToInt(Integer::parseInt)
-                .sum();
+            List<Integer> numList = Arrays.stream(number.split(delimiter+"|\n"))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+            
+            return sum(numList);
         } 
-        return toInt(number);
+        return Integer.parseInt(number);
     }
 
-    public static int toInt(String number) {
-        return Integer.parseInt(number);
+    private static int sum(List<Integer> numbers) {
+        StringBuilder negativeNumbers = new StringBuilder();
+
+        int total = numbers.stream()
+                .peek(num -> {
+                    if (num < 0) {
+                        if (negativeNumbers.length() > 0) {
+                            negativeNumbers.append(", ");
+                        }
+                        negativeNumbers.append(num);
+                    }
+                })
+                .mapToInt(Integer::intValue) 
+                .sum();
+
+        if (negativeNumbers.length() > 0) {
+            throw new IllegalArgumentException("Negatives not allowed: " + negativeNumbers);
+        }
+
+        return total;
     }
 
     public static void main(String[] args) {

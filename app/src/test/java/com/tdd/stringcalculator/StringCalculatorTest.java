@@ -30,4 +30,13 @@ public class StringCalculatorTest {
     public void testNewLineDelimiter() {
         assertEquals(13, StringCalculator.add("3\n1,4\n5"));
     }
+
+    @Test
+    public void testNegativeNumberWithCommaAndNewLineDelimiter() {
+        try {
+            StringCalculator.add("-1,-4\n3");
+        } catch (IllegalArgumentException exec) {
+            assertEquals(exec.getMessage(), "Negatives not allowed: -1, -4");
+        }
+    }
 }
