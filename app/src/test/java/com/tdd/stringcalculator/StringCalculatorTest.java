@@ -24,5 +24,10 @@ public class StringCalculatorTest {
     @Test
     public void testAdditionofMultipleNumberWithComma() {
         assertEquals(12, StringCalculator.add("2,1,4,5"));
-    }    
+    }
+
+    @Test
+    public void testNewLineDelimiter() {
+        assertEquals(13, StringCalculator.add("3\n1,4\n5"));
+    }
 }

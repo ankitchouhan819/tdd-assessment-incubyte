@@ -9,7 +9,7 @@ public class StringCalculator {
         
         String delimiter = ",";
         if (number.contains(delimiter)) {
-            return Arrays.stream(number.split(delimiter))
+            return Arrays.stream(number.split(delimiter+"|\n"))
                 .mapToInt(Integer::parseInt)
                 .sum();
         } 
@@ -19,6 +19,7 @@ public class StringCalculator {
     public static int toInt(String number) {
         return Integer.parseInt(number);
     }
+
     public static void main(String[] args) {
         
     }
