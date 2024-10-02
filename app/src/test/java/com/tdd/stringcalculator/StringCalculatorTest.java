@@ -39,4 +39,9 @@ public class StringCalculatorTest {
             assertEquals(exec.getMessage(), "Negatives not allowed: -1, -4");
         }
     }
+
+    @Test
+    public void testOverThousand() {
+        assertEquals(15, StringCalculator.add("1000,10\n5"));
+    }
 }

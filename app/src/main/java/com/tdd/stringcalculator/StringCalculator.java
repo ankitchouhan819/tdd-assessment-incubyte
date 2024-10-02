@@ -32,6 +32,7 @@ public class StringCalculator {
                         negativeNumbers.append(num);
                     }
                 })
+                .filter(num -> num < 1000)
                 .mapToInt(Integer::intValue) 
                 .sum();
 
